@@ -1,41 +1,31 @@
-name: Deploy to 02switch via FTP
-
+name: 🚀 Deploy website on push
 on:
   push:
     branches:
-      - main  # Cette configuration déclenche le déploiement lorsqu'un commit est poussé sur la branche `main`.
-
+      - main
 jobs:
-  deploy:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
-
     steps:
-      # Étape 1 : Checkout du code depuis GitHub
-      - name: Checkout code
+      - name: 🚚 Get latest code
         uses: actions/checkout@v2
 
-      # Étape 2 : Configurer la dernière version stable de Node.js
-      - name: Set up Node.js
+      - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
-          node-version: 'lts'  # Utilise la dernière version stable LTS de Node.js
+          node-version: '16'
 
-      # Étape 3 : Installer les dépendances
-      - name: Install dependencies
+      - name: 🔨 Build Project
         run: |
           npm install
-
-      # Étape 4 : Construire le projet pour la production
-      - name: Build project
-        run: |
           npm run build
 
-      # Étape 5 : Déployer sur le serveur FTP de 02switch
-      - name: Deploy to 02switch via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          ftp-server: ftp://ftp.v-vander.fr  # Remplace par l'URL de ton serveur FTP
-          ftp-username: ${{ secrets.FTP_USERNAME }}  # Secret contenant ton nom d'utilisateur FTP
-          ftp-password: ${{ secrets.FTP_PASSWORD }}  # Secret contenant ton mot de passe FTP
-          local-dir: ./dist  # Le répertoire contenant les fichiers générés après `npm run build`
-          remote-dir: /public_html  # Le répertoire cible sur ton serveur 02switch (par défaut, c'est souvent `public_html`)
+          server: ${{ darwin.o2switch.net.SERVER }}
+          username: ${{ jafo7150.FTP_USERNAME }}
+          password: ${{ R8Wt-NxKU-Lxm(.FTP_PASSWORD }}
+          server-dir: floriansimunek.com/
+          local-dir: dist/
