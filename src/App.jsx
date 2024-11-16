@@ -4,5 +4,8 @@ export default function App() {
       <label htmlFor="Banniere">Banniere</label>
       <input type="text" id="Banniere" />
     </div>
+    <div className="Menu">
+      <button type="button">Menu droite</button>
+    </div>
   </form>
 }
