@@ -27,5 +27,5 @@ jobs:
           server: ${{ darwin.o2switch.net.SERVER }}
           username: ${{ jafo7150.FTP_USERNAME }}
           password: ${{ R8Wt-NxKU-Lxm(.FTP_PASSWORD }}
-          server-dir: floriansimunek.com/
+          server-dir: v-vander.fr/
           local-dir: dist/
